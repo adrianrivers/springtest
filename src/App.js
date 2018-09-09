@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.png";
 import "./App.css";
 
-import Comment from './components/Comment'
+import Comment from './components/Comment/Comment'
 
 class App extends Component {
   state = {
@@ -28,7 +28,6 @@ class App extends Component {
     }
   }
 
-
   render() {
     return (
       <div className="App">
@@ -40,7 +39,7 @@ class App extends Component {
           <div>
             <ul>
               {
-                this.state.comments.map(comment => <Comment />)
+                this.state.comments.map(comment => <Comment comment={comment} key={comment.id} />)
               }
             </ul>
           </div>
