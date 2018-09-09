@@ -3,6 +3,14 @@ import styled from "styled-components";
 import logo from "./logo.png";
 import "./App.css";
 import Comment from "./components/Comment/Comment";
+import User from './components/User/User'
+
+const LogoContainer = styled.div`
+  width: 33.33%;
+  img {
+    width: 100%;
+  }
+`;
 
 const Content = styled.div`
   width: 73.33%;
@@ -12,6 +20,7 @@ const Content = styled.div`
     padding: 0;
   }
 `;
+
 
 class App extends Component {
   state = {
@@ -43,18 +52,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="Logo-container">
+        <LogoContainer>
           <img src={logo} className="App-logo" alt="logo" />
-        </div>
+        </LogoContainer>
         <Content>
           <h3>Spring Coding Challenge</h3>
-          <div>
-            <ul>
-              {this.state.comments.map(comment => (
-                <Comment comment={comment} key={comment.id} />
-              ))}
-            </ul>
-          </div>
+          <User user={this.state.user}/>
+          <ul>
+            {this.state.comments.map(comment => (
+              <Comment comment={comment} key={comment.id} />
+            ))}
+          </ul>
         </Content>
       </div>
     );
