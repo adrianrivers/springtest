@@ -18,7 +18,6 @@ const Content = styled.div`
   padding-left: 2em;
   ul {
     padding: 0;
-    transition: 13s ease;
   }
 `;
 
@@ -47,6 +46,9 @@ class App extends Component {
       });
     } catch (e) {
       console.error(e);
+      this.setState({
+        error: true
+      });
     }
   }
 
@@ -58,14 +60,11 @@ class App extends Component {
   };
 
   render() {
-
     let comments = null;
     if (this.state.showComments) {
-      comments = (
-        this.state.comments.map(comment => (
-          <Comment comment={comment} key={comment.id} />
-        ))
-      );
+      comments = this.state.comments.map(comment => (
+        <Comment comment={comment} key={comment.id} />
+      ));
     }
 
     return (
@@ -76,9 +75,7 @@ class App extends Component {
         <Content>
           <h3>Spring Coding Challenge</h3>
           <User user={this.state.user} clicked={this.showCommentsHandler} />
-          <ul>
-            {comments}
-          </ul>
+          <ul>{comments}</ul>
         </Content>
       </div>
     );
