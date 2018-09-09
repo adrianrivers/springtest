@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import logo from "./logo.png";
 import "./App.css";
 
+import Comment from './components/Comment'
+
 class App extends Component {
   state = {
     user: [],
@@ -21,7 +23,6 @@ class App extends Component {
         comments: comments
       });
 
-      console.log(user, comments)
     } catch (e) {
       console.error(e);
     }
@@ -36,6 +37,13 @@ class App extends Component {
         </div>
         <div className="App-content">
           <h3>Spring Coding Challenge</h3>
+          <div>
+            <ul>
+              {
+                this.state.comments.map(comment => <Comment />)
+              }
+            </ul>
+          </div>
         </div>
       </div>
     );
