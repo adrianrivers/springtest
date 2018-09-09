@@ -21,7 +21,6 @@ const Content = styled.div`
   }
 `;
 
-
 class App extends Component {
   state = {
     user: [],
@@ -49,6 +48,10 @@ class App extends Component {
     }
   }
 
+  showMoreInfoHandler = e => {
+    console.log('dadsasdasd');
+  }
+
   render() {
     return (
       <div className="App">
@@ -57,7 +60,7 @@ class App extends Component {
         </LogoContainer>
         <Content>
           <h3>Spring Coding Challenge</h3>
-          <User user={this.state.user}/>
+          <User user={this.state.user} clicked={this.showMoreInfoHandler} />
           <ul>
             {this.state.comments.map(comment => (
               <Comment comment={comment} key={comment.id} />
