@@ -15,7 +15,7 @@ const User = styled.div`
   }
 `;
 
-const ReadMore = styled.div`
+const SeeComments = styled.div`
   a {
     font-size: 28px;
     transition: 0.3s ease;
@@ -34,9 +34,9 @@ export default ({ user, clicked }) => {
         <h3>{user.username}</h3>
         <p>{user.name}</p>
       </div>
-      <ReadMore>
+      <SeeComments>
         <a onClick={clicked}>+</a>
-      </ReadMore>
+      </SeeComments>
     </User>
   );
 };

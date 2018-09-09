@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from "./logo.png";
 import "./App.css";
 import Comment from "./components/Comment/Comment";
-import User from './components/User/User'
+import User from "./components/User/User";
 
 const LogoContainer = styled.div`
   width: 33.33%;
@@ -18,13 +18,15 @@ const Content = styled.div`
   padding-left: 2em;
   ul {
     padding: 0;
+    transition: 13s ease;
   }
 `;
 
 class App extends Component {
   state = {
     user: [],
-    comments: []
+    comments: [],
+    showComments: false
   };
 
   async componentDidMount() {
@@ -48,11 +50,24 @@ class App extends Component {
     }
   }
 
-  showMoreInfoHandler = e => {
-    console.log('dadsasdasd');
-  }
+  showCommentsHandler = e => {
+    const doesShow = this.state.readMore;
+    this.setState({
+      showComments: !doesShow
+    });
+  };
 
   render() {
+
+    let comments = null;
+    if (this.state.showComments) {
+      comments = (
+        this.state.comments.map(comment => (
+          <Comment comment={comment} key={comment.id} />
+        ))
+      );
+    }
+
     return (
       <div className="App">
         <LogoContainer>
@@ -60,11 +75,9 @@ class App extends Component {
         </LogoContainer>
         <Content>
           <h3>Spring Coding Challenge</h3>
-          <User user={this.state.user} clicked={this.showMoreInfoHandler} />
+          <User user={this.state.user} clicked={this.showCommentsHandler} />
           <ul>
-            {this.state.comments.map(comment => (
-              <Comment comment={comment} key={comment.id} />
-            ))}
+            {comments}
           </ul>
         </Content>
       </div>
